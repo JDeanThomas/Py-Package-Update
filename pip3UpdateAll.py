@@ -2,8 +2,9 @@
 
 # Update all pip installed packages for Python 3
 
-import pip
+import pkg_resources
 from subprocess import call
 
-for dist in pip.get_installed_distributions():
+dists = [d for d in pkg_resources.working_set]
+for dist in dists:
     call("python3 -m pip install --upgrade " + dist.project_name, shell=True)
